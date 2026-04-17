@@ -1,37 +1,35 @@
 <html>
 <head>
-    <title>Chladni Audio-Reactive Visualizer</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/6.2.0/wavesurfer.min.js"></script>
-    <style>
-        body { margin: 0; overflow: hidden; }
-        canvas { position: absolute; top: 0; left: 0; }
-    </style>
+    <title>Chladni Pattern Generator</title>
+    <script>
+        // WebGL implementation and presets code here...
+    </script>
 </head>
 <body>
-    <script>
-        let audio;
-        let analyzer;
-
-        function preload() {
-            audio = loadSound('path/to/your/audio/file.mp3'); // Change this path
-        }
-
-        function setup() {
-            createCanvas(windowWidth, windowHeight);
-            analyzer = new p5.Amplitude();
-            audio.play();
-            analyzer.setInput(audio);
-        }
-
-        function draw() {
-            background(0);
-            let vol = analyzer.getLevel();
-            let diam = map(vol, 0, 1, 100, 800);
-            fill(255);
-            noStroke();
-            ellipse(width / 2, height / 2, diam);
-        }
-    </script>
+    <h1>Chladni Pattern Generator</h1>
+    <div>
+        <h2>Presets</h2>
+        <button id="bass">Bass</button>
+        <button id="ambient">Ambient</button>
+        <button id="noise">Noise</button>
+    </div>
+    <div>
+        <h2>Color Palettes</h2>
+        <div id="palettes">
+            <!-- Palette options go here -->
+        </div>
+    </div>
+    <div>
+        <h2>Sliders</h2>
+        <input type="range" id="slider1" value="50">
+        <input type="range" id="slider2" value="50">
+    </div>
+    <div>
+        <h2>Audio Input</h2>
+        <input type="file" id="audioInput" accept="audio/*">
+    </div>
+    <div>
+        <button id="export">Export</button>
+    </div>
 </body>
 </html>
