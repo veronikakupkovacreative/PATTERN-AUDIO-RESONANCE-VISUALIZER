@@ -1,0 +1,37 @@
+<html>
+<head>
+    <title>Chladni Audio-Reactive Visualizer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/6.2.0/wavesurfer.min.js"></script>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        canvas { position: absolute; top: 0; left: 0; }
+    </style>
+</head>
+<body>
+    <script>
+        let audio;
+        let analyzer;
+
+        function preload() {
+            audio = loadSound('path/to/your/audio/file.mp3'); // Change this path
+        }
+
+        function setup() {
+            createCanvas(windowWidth, windowHeight);
+            analyzer = new p5.Amplitude();
+            audio.play();
+            analyzer.setInput(audio);
+        }
+
+        function draw() {
+            background(0);
+            let vol = analyzer.getLevel();
+            let diam = map(vol, 0, 1, 100, 800);
+            fill(255);
+            noStroke();
+            ellipse(width / 2, height / 2, diam);
+        }
+    </script>
+</body>
+</html>
